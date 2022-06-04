@@ -96,10 +96,16 @@ body {
   /* Vertically center the text there */
 }
 
-.valid {
-  color: rgb(96, 201, 82);
+input[type="text"].valid-input {
+  outline-color: green;
+  border: 0.15rem solid green;
 }
 
-.invalid {
-  color: rgb(189, 52, 52);
+input[type="text"].invalid-input {
+  outline-color: tomato;
+  border: 0.15rem solid tomato;
+}
+
+.th-sm {
+  width: 15%;
 }
