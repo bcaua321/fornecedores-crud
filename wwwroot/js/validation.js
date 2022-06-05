@@ -2,8 +2,11 @@
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const elementNome = form.elements[0];
-  const elementCnpj = form.elements[1];
+  const elementNome = form.elements[1];
+  const elementCnpj = form.elements[2];
+
+  console.log(elementNome);
+  console.log(elementCnpj);
   
   const nome = elementNome.value;
   const cnpj = elementCnpj.value;
