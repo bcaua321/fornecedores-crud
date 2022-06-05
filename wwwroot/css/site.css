@@ -109,3 +109,13 @@ input[type="text"].invalid-input {
   width: 15%;
   text-align: center;
 }
+
+.form-sm{
+  width: 18%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+

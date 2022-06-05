@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using crudFornecedor.Models;
 using System.Collections.Generic;
@@ -16,12 +17,19 @@ namespace crudFornecedor.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nome)
         {
-            return View(await _context.Fornecedores.ToListAsync());
+            List<Fornecedor> fornecedores = await _context.Fornecedores.ToListAsync();
+            if (!String.IsNullOrEmpty(nome))
+            {
+                fornecedores = fornecedores.Where(f => f.Nome.ToLower().Contains(nome.ToLower())).ToList();
+            }
+
+            ViewBag.Tamanho = fornecedores.Count;
+            return View(fornecedores);
         }
 
-        // Create
+        // Create 
         [HttpGet]
         public IActionResult Register()
         {

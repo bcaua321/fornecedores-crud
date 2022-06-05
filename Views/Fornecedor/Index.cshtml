@@ -1,36 +1,59 @@
 @{
     ViewBag.titulo = "Fornecedores";
 }
-<div class="table-responsive-md">
 
-<table class="table table-sm table-primary table-striped text-center">
-    <thead>
-        <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Serviço</th>
-            <th class="th-sm"></th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var fornecedor in Model)
-    {
-        <tr>
-            <td class="align-middle">@fornecedor.Nome</td>
-            <td class="align-middle">@fornecedor.Cnpj</td>
-            <td class="align-middle">@fornecedor.Servico</td>
-            <td class="align-middle">
-                <a class="btn btn-outline-primary" asp-area="" asp-controller="Fornecedor" asp-action="Update"  asp-route-id="@fornecedor.ID"><i
-                                                                                                                                                  class="fa-solid fa-pencil"></i></a>
-                <a class="btn btn-outline-danger" asp-area="" asp-controller="Fornecedor"  asp-action="Delete" asp-route-id="@fornecedor.ID"><i
-                                                                                                                                                 class="fa-solid fa-trash"></i></a>
-            </td>
-        </tr>   
-    }
-    </tbody>
-</table>
-</div>
-
-@section Scripts{
+@if (ViewBag.Tamanho == 0)
+{
+    <div class="h-100 text-center">
+        <img src="~/imgs/3371471.jpg" class="w-50 rounded mx-auto d-block" alt="A man without files">
+        <p class="text-dark font-weigth-bold fs-5">Não foram encotrados itens</p>
+    </div>
+}
+else
+{
+    <p>Itens Encontrados: <span class="text-info">@ViewBag.Tamanho</span></p>
+    <div class="w-100 d-flex justify-content-between">
+        <!-- Table Cotents -->
+        <div class="table-responsive-md w-80">
+            <table class="table table-sm table-primary table-striped text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Serviço</th>
+                    <th class="th-sm"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var fornecedor in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@fornecedor.Nome</td>
+                        <td class="align-middle">@fornecedor.Cnpj</td>
+                        <td class="align-middle">@fornecedor.Servico</td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" asp-area="" asp-controller="Fornecedor" asp-action="Update" asp-route-id="@fornecedor.ID">
+                                <i
+                                    class="fa-solid fa-pencil"></i></a>
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Fornecedor" asp-action="Delete" asp-route-id="@fornecedor.ID">
+                                <i
+                                    class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+                    <!--Filters -->
+                    <form asp-controller="Fornecedor" asp-action="Index" class="form-sm">
+                                <div class="form-group mb-3">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" class="form-control form-control-sm" name="nome"/>
+                                </div>
+                        <input type="submit" class="btn btn-outline-info" value="Filter"/>
+                    </form>
+    </div>
+}
+@section Scripts {
 <script src="https://kit.fontawesome.com/4caf1dc005.js" crossorigin="anonymous"></script>
 }
