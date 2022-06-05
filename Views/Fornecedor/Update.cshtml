@@ -1,0 +1,28 @@
+@model Fornecedor
+@{
+    ViewBag.Titulo = "Editar";
+}
+
+<form method="post" id="form-1">
+    <input type="hidden" asp-for="ID" value="@Model.ID">
+    <div class="mb-3">
+        <label for="fornecedor" class="form-label">Fornecedor</label>
+        <input type="text" class="form-control" id="fornecedor" asp-for="Nome">
+        <small></small>
+    </div>
+    <div class="mb-3">
+        <label for="cnpj" class="form-label">CNPJ (Somente Números)</label>
+        <input type="text" class="form-control" id="cnpj" asp-for="Cnpj">
+        <small></small>
+    </div>
+    <div class="mb-3">
+        <label for="especialidade" class="form-label">Especialidade</label>
+        <select class="form-select" aria-label="Default select example" asp-for="Servico" id="especialidade">
+            <option value="comercio" selected>Comércio</option>
+            <option value="servico">Serviço</option>
+            <option value="industria">Indústria</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
