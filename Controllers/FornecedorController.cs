@@ -26,7 +26,7 @@ namespace crudFornecedor.Controllers
             }
 
             ViewBag.Tamanho = fornecedores.Count;
-            return View(fornecedores);
+            return View(fornecedores.OrderBy(x => x.Nome));
         }
 
         // Create 
@@ -52,9 +52,11 @@ namespace crudFornecedor.Controllers
             Fornecedor fornecedor = await _context.Fornecedores.FindAsync(id);
             if (id.HasValue && fornecedor != null)
             {
+                TempData["updateSucess"] = true;
                 return View(fornecedor);
             }
-
+            
+            TempData["updateSucess"] = false;
             return RedirectToAction(nameof(Index));
         }
         
@@ -73,20 +75,26 @@ namespace crudFornecedor.Controllers
         {
             if (!(id.HasValue && await _context.Fornecedores.AnyAsync(f => f.ID == id)))
             {
+                TempData["deleteSucess"] = false;
                 return RedirectToAction(nameof(Index));
             }
-
+            
+            TempData["deleteSucess"] = true;
             var fornecedor = await _context.Fornecedores.SingleAsync(f => f.ID == id);
-
             return View(fornecedor);
         }
         
         [HttpPost]
         public async Task<IActionResult> Delete(Fornecedor fornecedor)
         {
-            _context.Fornecedores.Remove(fornecedor); 
-            await _context.SaveChangesAsync();   
-    
+            if (fornecedor == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            
+            _context.Fornecedores.Remove(fornecedor);
+            await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
     }

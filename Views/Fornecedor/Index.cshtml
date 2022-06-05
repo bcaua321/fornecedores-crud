@@ -2,6 +2,24 @@
     ViewBag.titulo = "Fornecedores";
 }
 
+@if (TempData.ContainsKey("deleteSucess"))
+{
+    var deleteSucess = (bool)TempData["deleteSucess"];
+    @if (deleteSucess)
+    {
+        <partial name="_MensagemInfo" model="@("Fornecedor excluido com sucesso")"></partial>
+    }
+}
+
+@if (TempData.ContainsKey("updateSucess"))
+{
+    var updateSucess = (bool)TempData["updateSucess"];
+    @if (updateSucess)
+    {
+        <partial name="_MensagemInfo" model="@("Fornecedor editado com sucesso")"></partial>
+    }
+}
+
 @if (ViewBag.Tamanho == 0)
 {
     <div class="h-100 text-center">
@@ -54,6 +72,7 @@ else
                     </form>
     </div>
 }
+
 @section Scripts {
 <script src="https://kit.fontawesome.com/4caf1dc005.js" crossorigin="anonymous"></script>
 }
