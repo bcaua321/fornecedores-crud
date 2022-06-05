@@ -21,6 +21,7 @@ namespace crudFornecedor.Controllers
             return View(await _context.Fornecedores.ToListAsync());
         }
 
+        // Create
         [HttpGet]
         public IActionResult Register()
         {
@@ -36,6 +37,7 @@ namespace crudFornecedor.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Update
         [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
@@ -52,11 +54,12 @@ namespace crudFornecedor.Controllers
         public async Task<IActionResult> Update(Fornecedor fornecedor)
         {
             _context.Fornecedores.Update(fornecedor);
-            await  _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
-
+        
+        // Delete
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {

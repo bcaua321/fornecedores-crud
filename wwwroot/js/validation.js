@@ -65,6 +65,7 @@ function nameIsValid(str, node){
 // Para adicionar a mensagem e formatação
 function addMsg(str, node, isValid){
   const message = node.parentNode.querySelector("small");
+  console.log(message);
   if(isValid){
     node.classList.remove("invalid-input"); 
     message.innerText = str;
