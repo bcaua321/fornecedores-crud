@@ -1,15 +1,16 @@
-﻿const form = document.getElementById("form");
-const elementCnpj = document.getElementById("cnpj");
+﻿let form = document.getElementById("form");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const elementNome = form.elements[0];
   const elementCnpj = form.elements[1];
-
+  
   const nome = elementNome.value;
   const cnpj = elementCnpj.value;
 
-
+  console.log(nome);
+  console.log(cnpj);
+  
   let nameInputIsValid = nameIsValid(nome, elementNome);
   let cnpjInputIsValid = cnpjIsValid(cnpj, elementCnpj);
 
@@ -24,7 +25,7 @@ function cnpjIsValid(str, node){
     return false;
   }
 
-  if(str.length != 14){
+  if(str.length !== 14){
     addMsg("Campo incorreto", node, false);
     return false;
   }
@@ -79,7 +80,7 @@ function addMsg(str, node, isValid){
 
 // Verificar se tem valor
 function hasValue(input){
-  if(input.trim().length == 0){
+  if(input.trim().length === 0){
     console.log("o valor é: " + input);
     return false;
   }

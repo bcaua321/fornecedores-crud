@@ -1,0 +1,34 @@
+@{
+    ViewBag.titulo = "Fornecedores";
+}
+
+<table class="table table-sm table-primary table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Serviço</th>
+            <th class="th-sm"></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var fornecedor in Model)
+    {
+        <tr>
+            <td>@fornecedor.Nome</td>
+            <td>@fornecedor.Cnpj</td>
+            <td>@fornecedor.Servico</td>
+            <td>
+                <a class="btn btn-outline-primary" asp-area="" asp-controller="Fornecedor" asp-action="Update"  asp-route-id="@fornecedor.ID"><i
+                                                                                                           class="fa-solid fa-pencil"></i></a>
+                <a class="btn btn-outline-danger" asp-area="" asp-controller="Fornecedor"  asp-action="Delete" asp-route-id="@fornecedor.ID"><i
+                                                                                                     class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>   
+    }
+    </tbody>
+</table>
+
+@section Scripts{
+<script src="https://kit.fontawesome.com/4caf1dc005.js" crossorigin="anonymous"></script>
+}

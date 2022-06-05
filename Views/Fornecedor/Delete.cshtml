@@ -1,0 +1,11 @@
+@model Fornecedor
+@{
+    ViewBag.subtitulo = "Excluir Fornecedor"; 
+}
+
+<h1 class="text-primary">@ViewBag.subtitulo</h1>
+<h4>Deseja excluir o fornecedor @Model.Nome?</h4>
+<form method="post">
+    <a class="btn btn-outline-danger" asp-area="" asp-controller="Fornecedor" asp-action="Index">Não</a>
+    <button type="submit" class="btn btn-outline-primary">Sim</button>
+</form>
